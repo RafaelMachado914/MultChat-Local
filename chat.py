@@ -1,4 +1,5 @@
 import customtkinter as ctk
+import rede
 
 
 
@@ -16,8 +17,8 @@ lateral.grid(row=0, column=0, sticky="nsew")
 
 
 
-Ususario = ctk.CTkLabel(lateral, text="Usuário")
-Ususario.pack(pady=10)
+LabelUsusario = ctk.CTkLabel(lateral, text="Usuário")
+LabelUsusario.pack(pady=10)
 
 Entrada_usuario = ctk.CTkEntry(lateral, placeholder_text="Usuario")
 Entrada_usuario.pack(pady=5)
@@ -36,8 +37,12 @@ Porta_selecionada = ctk.CTkEntry(lateral, placeholder_text="Porta")
 Porta_selecionada.pack(pady=5)
 
 
-botao_entrar = ctk.CTkButton(lateral, text="Entrar")
+botao_entrar = ctk.CTkButton(lateral, text="Entrar",command=entrar)
 botao_entrar.pack(pady=20)
+
+def entrar():
+    rede.usuario = Entrada_usuario.get()
+
 
 
 Texto_chat = ctk.CTkTextbox(chat, width=500)
@@ -56,8 +61,21 @@ Caixa_entrada.grid_columnconfigure(1, weight=0)
 entrada_mensagem = ctk.CTkEntry(Caixa_entrada, placeholder_text="Digite...") 
 entrada_mensagem.grid(row=0, column=0, sticky="ew", padx=(0, 10))
 
-botao_enviar = ctk.CTkButton(Caixa_entrada, text="Enviar", width=80)
+botao_enviar = ctk.CTkButton(Caixa_entrada, text="Enviar", width=80, command=enviar)
 botao_enviar.grid(row=0, column=1)
+
+def enviar():
+    texto = entrada_mensagem.get()
+    rede.servidor_udp.sendto(
+        json.dumps({
+            "date": datetime.now().strftime("%d/%m/%Y"),
+            "time": datetime.now().strftime("%H:%M:%S"),
+            "username": rede.usuario,
+            "message": texto
+        }).encode("utf-8"),
+        (rede.ip_grupo, rede.porta)
+    )
+    entrada_mensagem.delete(0, "end")
 
 
 
