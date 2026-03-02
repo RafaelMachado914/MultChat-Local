@@ -31,7 +31,6 @@ def receber_mensagens(servidor_udp):
            recebida = mensagem_convertida
            return recebida
        except:
-           print('Desconectado')
            servidor_udp.close()
            break
 
