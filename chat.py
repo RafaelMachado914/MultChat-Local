@@ -45,8 +45,6 @@ entrada_mensagem.grid(row=0, column=0, sticky="ew", padx=(0, 10))
 
 def enviar():
     texto = entrada_mensagem.get()
-    rede.ip_grupo = Entrada_ip.get()
-    rede.porta = int(Porta_selecionada.get())
     rede.servidor_udp.sendto(
         json.dumps({
             "date": datetime.now().strftime("%d/%m/%Y"),
@@ -58,12 +56,16 @@ def enviar():
     entrada_mensagem.delete(0, "end")
 
 def mostrar_mensagem(msg):
-    Texto_chat.configure(state="normal")
+  
+     def atualizar():
+        Texto_chat.configure(state="normal")
 
-    Texto_chat.insert("end",f"\n{msg['date']} {msg['time']}\n{msg['username']}: {msg['message']}\n" )
-    print(msg)
-    Texto_chat.configure(state="disabled")
-    Texto_chat.see("end")
+        Texto_chat.insert("end",f"{msg['date']} {msg['time']}\n{msg['username']}: {msg['message']}\n\n")
+
+        Texto_chat.configure(state="disabled")
+        Texto_chat.see("end")
+
+     chat.after(0, atualizar)
 
 def entrar():
     rede.usuario = Entrada_usuario.get()
