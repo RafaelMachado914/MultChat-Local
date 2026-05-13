@@ -68,13 +68,18 @@ def mostrar_mensagem(msg):
      chat.after(0, atualizar)
 
 def entrar():
+    Texto_chat.configure(state="normal")
+    Texto_chat.insert("end", f" {Entrada_usuario.get()} entrou na conversa.\n \n")
+    Texto_chat.configure(state="disabled")
     rede.usuario = Entrada_usuario.get()
     rede.recebida = mostrar_mensagem
     rede.iniciar(Entrada_ip.get(), int(Porta_selecionada.get()))
     botao_enviar.configure(state="normal")
+    botao_entrar.configure(state="disabled")
 
 botao_entrar = ctk.CTkButton(lateral, text="Entrar",command=entrar)
 botao_entrar.pack(pady=20)
+
 
 
 def sair():
@@ -89,6 +94,9 @@ botao_sair.pack(pady=20)
 botao_enviar = ctk.CTkButton(Caixa_entrada, text="Enviar", width=80, command=enviar)
 botao_enviar.grid(row=0, column=1)
 botao_enviar.configure(state="disabled")
+
+chat.bind("<Return>", lambda event: botao_enviar.invoke())
+
 
 if __name__ == "__main__":
     chat.mainloop()

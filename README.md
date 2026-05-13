@@ -1,8 +1,5 @@
 <h1>🛜Chat de Redes IFSC 2026</h1>
-
-<img width="auto" height="450" alt="Captura de tela 2026-05-13 083508" src="https://github.com/user-attachments/assets/2600dc98-c740-49ee-a65b-047917d7f2d4" />
-
-
+<img src="imagens/imagem.png" height="350">
 <h3>Com base nos conceitos apresentados nas aulas (materia de Redes- IFSC) e utilizando a linguagem de programação de sua 
 preferência crie uma aplicação de bate papo (chat) contemplando os seguintes requisitos técnicos: </h3></br>
 • deve ter interface gráfica (GUI – Graphical User Interface); </br>
