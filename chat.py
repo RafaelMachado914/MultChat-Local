@@ -42,6 +42,8 @@ Caixa_entrada.grid_columnconfigure(1, weight=0)
 entrada_mensagem = ctk.CTkEntry(Caixa_entrada, placeholder_text="Digite...") 
 entrada_mensagem.grid(row=0, column=0, sticky="ew", padx=(0, 10))
 
+# logica
+
 
 def enviar():
     texto = entrada_mensagem.get()
@@ -86,7 +88,13 @@ def sair():
     rede.ip_grupo = None
     rede.porta = None
     rede.servidor_udp.close()
-    chat.destroy()
+    rede.servidor_udp = None
+    rede.usuario = None
+    botao_entrar.configure(state="normal")
+    botao_enviar.configure(state="disabled")
+    Texto_chat.configure(state="normal")
+    Texto_chat.insert("end", "Você saiu da conversa.\n\n")
+    Texto_chat.configure(state="disabled")
 
 botao_sair = ctk.CTkButton(lateral, text="Sair",command=sair)
 botao_sair.pack(pady=20)
