@@ -28,3 +28,8 @@ date_value é a data (dd/mm/aaaa) de envio da mensagem (obtida no nó origem); <
 time_value é a hora (hh:mm:ss) de envio da mensagem (obtida no nó origem); </br>
 username_value é o nome do usuário que enviou a mensagem; </br>
 message_value é a mensagem em si;
+
+<h3>BIBLIOTECA</h3>
+<P>COMANDO PARA INSTALAR A BIBLIOTECA NECESSARIA</P>
+</BR>
+ pip install customtkinter 
