@@ -32,4 +32,4 @@ message_value é a mensagem em si;
 <h3>BIBLIOTECA</h3>
 <P>COMANDO PARA INSTALAR A BIBLIOTECA NECESSARIA</P>
 </BR>
- pip install customtkinter 
+ <code> pip install customtkinter </code>
